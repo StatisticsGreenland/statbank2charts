@@ -2,7 +2,7 @@
 
 This repository contains a commented code-example of using data from StatBank Greenland  (http://bank.stat.gl/pxweb/en/Greenland/) for data visualisations. 
 
-**Live example:** [demosites.kathart.dk/stat-gl](http://demosites.kathart.dk/stat-gl)
+**Live example:** [http://www.stat.gl/demo](http://www.stat.gl/demo)
 
 
 ## What is this repository for? ##
@@ -44,7 +44,3 @@ In the line and bar chart the dataset is pivoted, with each unique value in dime
 
 **Table 1 pivoted**
 ![Screen Shot 2015-09-28 at 10.29.42.png](https://bitbucket.org/repo/BaERxR/images/1363508627-Screen%20Shot%202015-09-28%20at%2010.29.42.png)
-
-
-## Who do I talk to? ##
-* Lars Pedersen from Statistics Greenland
