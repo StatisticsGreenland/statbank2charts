@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Statistics Greenland Open Source Data Visualizations</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="lib/underscore-min.js"></script>
+  <script src="scripts/helper-functions.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- STYLES -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="styles/main.css">
+
+  <!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+</head>
+
+<body>
+  <!--[if lt IE 10]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+  <div class="pure-g" id="main-content">
+    <div class=" header-band pure-g padded">
+      <div class="pure-u-2-5 pure-u-md-1-5">
+        <a href="http://www.stat.gl/default.asp?lang=en" target="blank"><img class="stat-gl-logo" src="images/stat-gl-logo.png"></a>
+      </div>
+      <div class="pure-u-3-5 pure-u-md-2-5">
+        <h2>stats & <strong>charts</strong></h2>
+      </div>
+      <div class="pure-u-2-5 hide-md">
+        <a href="https://bitbucket.org/kathartdk/statistics-greenland-open-source-data-visualization" target="blank"><img class="download-top btn" src="images/download_top.png"></a>
+      </div>
+    </div>
+    <div class="padded" id="chart-wrapper">
+      <div class="pure-u-1 pure-u-md-3-5">
+        <h3 id="label"></h3>
+      </div>
+
+      <!--          <label for="state">Chart type: </label>-->
+      <div class="pure-u-1 pure-u-md-2-5 styled-select">
+        <select id="state" onchange="changeChartType(this.value)">
+          <option value='ColumnChart'>Column Chart</option>
+          <option value='LineChart'>Line Chart</option>
+          <option value='PieChart'>Pie Chart</option>
+          <option value='Table'>Table</option>
+        </select>
+      </div>
+    </div>
+    <div class="pure-u-1 padded">
+      <div class="pure-u-1" id="chart_div"></div>
+      <div id="visualization" style="width: 100%"></div>
+      <p class="chart-caption"><span id="source"></span></p>
+    </div>
+    <div id="dashboard_div">
+      <div class="pure-u-1 padded">
+        <div class="arrow-down"></div>
+        <h2>DASHBOARD</h2>
+        <!--Divs that will hold each control and chart-->
+        <div class="choose-category-band" class="pure-u-1" id="category_picker">
+          <span>Pick data series:</span>
+          <div id="category_buttons"></div>
+          <div id="airport_picker"></div>
+        </div>
+      </div>
+      <div class="pure-u-1">
+        <div class="filters padded">
+          <div id="filter_div"></div>
+
+          <div id="time_picker"></div>
+
+          <div id="month_picker"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pure-u-1 padded blue-band" id="dataset">
+      <h2>Dataset</h2>
+      <p>Create your own data-feed at Statistics Greenlands <a href="http://bank.stat.gl/pxweb/en/Greenland/" target="blank">Statbank</a>        and paste the url in the form below. </p>
+      <p>Check out the rules for the data-set:
+        <a href="#dataset-rules" onclick="toggle_visibility('dataset-rules')">
+          <button class=" series-button update-button quick-dataset-button">Dataset Rules</button>
+        </a>
+      </p>
+      <!--      <div class="pure-u-1 padded" id="the-data">-->
+    </div>
+    <div id="dataset-rules" class="pure-g padded light-blue-band">
+      <div class="pure-u-4-5">
+        <h2>THE DATA</h2>
+      </div>
+      <div class="pure-u-1-5">
+        <div class="close-button"><a class="white-text close-symbol" href="#dataset" onclick="toggle_visibility('dataset-rules')">&times;</a></div>
+      </div>
+      <div class="pure-u-1">
+        <p>The dataset should be of the <a class="white-text" href="http://json-stat.org/" target="blank">JSON-stat </a>format
+          and have 3 dimensions:</p>
+        <ol>
+          <li><b>Time.</b> This should be the first dimension. This dimension will become the horizontal axis on the bar and
+            line charts.
+          </li>
+          <li><b>Category.</b> The second dimension is used to group the data in different data series. This dimension will be
+            the vertical axis of the charts.</li>
+          <li><b>Category (summed).</b> The third dimension may include categorical data, which will allow a third filtering
+            option in the pie chart. In the column and line chart the data is summed to one value.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="pure-u-1 padded blue-band">
+      <form class="pure-form" action="javascript:void(0);">
+        <label for="url">Dataset Url:</label>
+        <div class="styled-input">
+          <input type="url" id="url" style="width: 75%" placeholder="http://">
+          <input class="pure-button series-button update-button" type="button" value="Update" id="sButton" onclick="changeDatasetUrl('url', false, false)"
+          />
+        </div>
+      </form>
+    </div>
+
+    <div class="pure-u-1 padded blue-band demo-datasets">
+      <h3>Or check out one of our demo-datasets: </h3>
+      <span class="white">Population by time, age and residence</span>
+      <button class="series-button update-button quick-dataset-button" type="button" onclick="changeDatasetUrl(null,'http://bank.stat.gl/sq/c370bb37-55d0-4141-a849-a0a87488c5ee', 'LineChart' );">Show</button>
+      <br>
+      <br>
+      <span class="white">Population by time, gender and residence</span>
+      <button class=" series-button update-button quick-dataset-button" type="button" onclick="changeDatasetUrl(null,'http://bank.stat.gl/sq/d626deb4-6b7d-42ce-ae39-d73c0967926a', 'LineChart' );">Show</button>
+    </div>
+
+
+
+    <div class="pure-g download-band">
+      <div class="pure-u-1 pure-u-md-1-2  padded">
+        <h1>Get the <b>source code</b> here for free</h1>
+        <p> The source code is freely available for use on your site. Head over to grab your own copy at bitbucket.</p>
+        <br>
+        <a href="https://bitbucket.org/kathartdk/statistics-greenland-open-source-data-visualization" target="blank"><img class="download-button btn" src="images/download-large.gif"></a>
+      </div>
+      <div class="hide-md pure-u-1-5 pure-u-md-1-2  padded">
+        <img src="images/paper-html.png" </div>
+      </div>
+    </div>
+    <div class="pure-g testimonials-band">
+      <div class="pure-u-1 pure-u-md-1-2 padded">
+        <h1>Cases and <b>testimonials</b></h1>
+        <p>Our data has been used by... </p>
+      </div>
+    </div>
+    <div class="pure-g testimonials-band">
+      <div class="pure-u-1 pure-u-md-1-2  padded case">
+        <h2>GREENLAND TOURISM STAT</h2>
+        <p>Our statistics API provides data for Visit Greenlands tourismstat-website.</p>
+        <a href="http://tourismstat.gl" target="blank"><img src="images/link.png"><span>http://tourismstat.gl</span></a>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2 padded case">
+        <img src="images/tourismstat-screendump.png">
+      </div>
+    </div>
+    <div class="footer">
+      <div class="pure-u-1 pure-u-md-3-5 padded ">
+        <h3>Designed and developed by</h3>
+      </div>
+      <div class="pure-u-1 pure-u-md-2-5 padded">
+        <a href="http://www.kathart.dk/site/ydelser/contentmarketing/" target="blank"><img class="logo" src="images/kathart-logo.png"></a>
+      </div>
+    </div>
+    <script src="lib/json-stat.js"></script>
+    <script src="scripts/columnChart.js"></script>
+    <script src="scripts/pie-chart.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
