@@ -171,6 +171,18 @@
         <a href="http://www.kathart.dk/site/ydelser/contentmarketing/" target="blank"><img class="logo" src="images/kathart-logo.png"></a>
       </div>
     </div>
+    <!-- avoid problems with console.log in IE -->
+    <script type="text/javascript">
+      if (!window.console) {
+      var console = {
+        log: function() {},
+        warn: function() {},
+        error: function() {},
+        time: function() {},
+        timeEnd: function() {}
+      }
+    }
+    </script>
     <script src="lib/json-stat.js"></script>
     <script src="scripts/columnChart.js"></script>
     <script src="scripts/pie-chart.js"></script>
