@@ -76,7 +76,7 @@ function drawDashboard() {
     
     
     // Visualize the data in a table
-/*    var table = new google.visualization.Table(document.getElementById('table_div'));
+/*  var table = new google.visualization.Table(document.getElementById('table_div'));
     table.draw(pivotedData, {});*/
     
     // Use the pivoted dataset for the chart 
