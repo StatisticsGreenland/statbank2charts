@@ -78,7 +78,6 @@ changeChartType = function (kind) {
         document.getElementById('airport_picker').style.display = 'block';
         drawPieDashboard();
     }
-    document.getElementById('state').value = kind;
 }
 
 // Load a dataset by inserting an URL and clicking update in the HTML

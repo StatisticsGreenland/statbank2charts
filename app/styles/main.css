@@ -1,5 +1,5 @@
 html { 
-  background: url(../images/background.png) no-repeat center center fixed;
+  background: url(../background.png) no-repeat center center fixed;
 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -247,24 +247,17 @@ strong {
     height: 34px;
     background: url(../images/down-arrow.jpg) no-repeat right #eceeee;
     -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
     background-position-x: 234px;
     cursor: pointer;
     float: right; 
     margin-left: 2em;
 }
 
-.styled-select select::-ms-expand {
-    display: none;
-}
 
 .styled-input input {
   background: #fff;
   border-radius: 0 !important;
   -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
   border: 0 !important;
   box-shadow: none !important;
 }
