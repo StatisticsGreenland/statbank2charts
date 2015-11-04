@@ -40,7 +40,7 @@ In the line and bar chart the dataset is pivoted, with each unique value in dime
 * *dimension 3* is lost during pivoting, in the sense that all data belonging to that specific time stamp and category (*from dimension 2*) is summed up to a single value. See illustrations (table 1 and table 1 pivoted) for reference.
 
 **Table 1**
-![Screen Shot 2015-09-28 at 10.31.10.png](https://bitbucket.org/repo/BaERxR/images/3556998481-Screen%20Shot%202015-09-28%20at%2010.31.10.png)
+![Screen Shot 2015-09-28 at 10.31.10.png](/3556998481-Screen%20Shot%202015-09-28%20at%2010.31.10.png)
 
 **Table 1 pivoted**
-![Screen Shot 2015-09-28 at 10.29.42.png](https://bitbucket.org/repo/BaERxR/images/1363508627-Screen%20Shot%202015-09-28%20at%2010.29.42.png)
+![Screen Shot 2015-09-28 at 10.29.42.png](/1363508627-Screen%20Shot%202015-09-28%20at%2010.29.42.png)
