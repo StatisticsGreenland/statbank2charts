@@ -39,6 +39,10 @@ li {
   margin-bottom: 1em;
 }
 
+#url {
+  color: #000;
+}
+
 
 .pure-g [class *="pure-u"] {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
