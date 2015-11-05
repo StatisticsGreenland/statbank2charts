@@ -4,13 +4,12 @@
 function drawDashboard() {
 
     var dataset = curDataset;
-
     document.getElementById('label').innerHTML = dataset.Dataset(0).label;
     document.getElementById('source').innerHTML = dataset.Dataset(0).source;
     
     // The JSONStat-dataset is formatted into a dataTable,ii which plays nice with googles chart library.
     var tbl = dataset.toTable({ type: "object" });
-    console.log('table: ', tbl);
+    //console.log('table: ', tbl);
     
     // The newly created datatable is used as input to a google visualization dataTable. 0.6 indicates the api-version.
     var data = new google.visualization.DataTable(tbl, 0.6);
@@ -19,7 +18,7 @@ function drawDashboard() {
     
     // Pivoting the data
     var distinctValues = data.getDistinctValues(1); // get an array of distinct values in column 0 (possible values for airport)
-    console.log("distinct-values: ", distinctValues);
+    //console.log("distinct-values: ", distinctValues);
     var viewColumns = [0]; // Set the time-column (years) as the first column in the view
     var groupColumns = [];
     
@@ -66,7 +65,7 @@ function drawDashboard() {
     // Calculate how many data-series the pivoted data has. 
     if (!series) {
         series = initSeries(pivotedData.getNumberOfColumns() - 2); // disregard column 0 and 1 (they are used for the time-dimension)
-        console.log(series);
+        //console.log(series);
     }    
     
     // Set the chart view options
@@ -118,7 +117,7 @@ function drawDashboard() {
     // Establish dependencies, declaring that timePicker, monthPicker and airportPicker drives 'pieChart',
     // so that the pie chart will only display entries that are let through these filters.
     dashboard.bind(timePicker, chart);
-    console.log("draw chart type: ", chartType);
+    //console.log("draw chart type: ", chartType);
     // Draw the dashboard.
     dashboard.draw(chartData);
     

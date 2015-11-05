@@ -1,5 +1,3 @@
-
-
 var series = null;
 
 var initSeries = function (numOfSeries) {
@@ -11,17 +9,17 @@ var initSeries = function (numOfSeries) {
             'show': true
         });
     }
-    console.log('initSeries ', newSeries);
+/*    console.log('initSeries ', newSeries);*/
     return newSeries;
 }
 
 var getSeries = function(index) {
-    console.log(series[index]);
+/*    console.log(series[index]);*/
     return series[index];
 }
 
 var getView = function () {
-    console.log("series length ", _.keys(series).length);
+    //console.log("series length ", _.keys(series).length);
     var columns = [];
     var colors = [];
     columns.push(1);
@@ -38,14 +36,14 @@ var getView = function () {
 }
 
 var toggleSeries = function (seriesIndex) {
-    console.log('seriesIndex ', seriesIndex, "status: ", series[seriesIndex.toString()].show);
+/*    console.log('seriesIndex ', seriesIndex, "status: ", series[seriesIndex.toString()].show);*/
     if (series[seriesIndex.toString()].show) {
         series[seriesIndex.toString()].show = false;
-        console.log('toggled off');
+/*        console.log('toggled off');*/
     }
     else {
         series[seriesIndex.toString()].show = true;
-        console.log('toggled on');
+/*        console.log('toggled on');*/
     }
     return getView();
 }

@@ -20,11 +20,11 @@ var curDataset, pivotedData, init, shownColumns, curChartColors = null;
 var chartColors = ['#dc3912', '#fb6705', '#41c190', '#32a9b2', '#f6bd0a', '#9f194f', '#05344a', '#00020f', '#fb5457', '#fba105', '#95b437', '#15b0bb','#056466', '#3c986a', '#b32a09', '#f57649', '#e16488', '#138ab6', '#0dbb94', '#2f5f70   ', '#9873a6', '#cab98f  ', '#c0617c', '#1d8870','#90bb0d', '#f24c54', '#528ab2'];
 
 var toggleColumn = function (value) {
-    console.log('toggling column: ', value);
+/*    console.log('toggling column: ', value);*/
     var options = toggleSeries(value);
     shownColumns = options.columns;
     curChartColors = options.colors;
-    console.log(shownColumns, curChartColors);
+/*    console.log(shownColumns, curChartColors);*/
     drawDashboard();
 }
 
@@ -32,9 +32,10 @@ var toggleColumn = function (value) {
 google.setOnLoadCallback(
     function () {
         JSONstat('http://bank.stat.gl/sq/2ea754be-6cc4-4ead-b349-b532d6e363ac', function () {
-            if (this.class === "bundle") {
+/*            console.log("length: ", this.legth);*/
+            if (this.length) {                
                 curDataset = this.Dataset(0);
-                console.log('curdataset: ', curDataset);
+/*                console.log('curdataset: ', curDataset);*/
                 drawDashboard();
                 getColumnLabels(pivotedData);
             }
@@ -93,10 +94,10 @@ var changeDatasetUrl = function (inputId, datasetUrl, newChartType) {
         datasetUrl = datasetUrl;
     }
     
-    console.log("InputId: ", inputId + " datasetUrl: ", datasetUrl + " newChartType: ", newChartType)
+   /* console.log("InputId: ", inputId + " datasetUrl: ", datasetUrl + " newChartType: ", newChartType)*/
 
     JSONstat(datasetUrl, function () {
-        if (this.class === "bundle") {
+        if (this.length) {
             shownColumns = []; // Reset shown columns, to force calculating number of columns from new dataset
             curDataset = this.Dataset(0);
             series = null; // Reset series to force recalculation of number of series when fetching a new dataset
@@ -114,7 +115,7 @@ var changeDatasetUrl = function (inputId, datasetUrl, newChartType) {
 var getColumnLabels = function (dataset) {
     var categoryPicker = document.getElementById('category_picker');
     var oldCategoryButtons = document.getElementById('category_buttons');
-    console.log(oldCategoryButtons);
+/*    console.log(oldCategoryButtons);*/
 
     var buttonsDiv = document.createElement('div');
     buttonsDiv.setAttribute('id', 'category_buttons');
