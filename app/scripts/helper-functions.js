@@ -55,3 +55,41 @@ function toggle_visibility(id) {
        else
           e.style.display = 'block';
     }
+    
+    
+ // Function to change the chart type based on user input from the HTML
+function changeChartType(kind) {
+    chartType = kind;
+
+    if (kind != 'PieChart') {
+        document.getElementById('airport_picker').style.display = 'none';
+        document.getElementById('category_buttons').style.display = 'block';
+        document.getElementById('month_picker').style.display = 'none';
+        drawDashboard();
+    }
+    else {
+        document.getElementById('category_buttons').style.display = 'none';
+        document.getElementById('month_picker').style.display = 'block';
+        document.getElementById('airport_picker').style.display = 'block';
+        drawPieDashboard();
+    }
+    document.getElementById('state').value = kind;
+}   
+    
+    
+ function graphIt(datasetUrl, chartType) {
+    JSONstat(datasetUrl, function () {
+        if (this.length) {
+            shownColumns = []; // Reset shown columns, to force calculating number of columns from new dataset
+            curDataset = this.Dataset(0);
+            series = null; // Reset series to force recalculation of number of series when fetching a new dataset
+            console.log(chartType);
+            changeChartType(chartType);
+            getColumnLabels(pivotedData);
+            location.href = "#chart-wrapper";
+        }
+        else {
+            alert("Something went wrong, when loading the data. Is it a valid URL? Is it JSON-stat?");
+        }
+    })
+}

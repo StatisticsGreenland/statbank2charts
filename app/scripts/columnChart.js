@@ -1,9 +1,15 @@
 // Callback that creates and populates a data table,
 // instantiates a dashboard, a range slider and a pie chart,
 // passes in the data and draws it.
-function drawDashboard() {
+function drawDashboard(timeVar, multiVar) {
+    
+    console.log(timeVar, multiVar);
+    
+
 
     var dataset = curDataset;
+    
+        console.log(dataset.role.time[0]);
     document.getElementById('label').innerHTML = dataset.Dataset(0).label;
     document.getElementById('source').innerHTML = dataset.Dataset(0).source;
     
@@ -13,6 +19,8 @@ function drawDashboard() {
     
     // The newly created datatable is used as input to a google visualization dataTable. 0.6 indicates the api-version.
     var data = new google.visualization.DataTable(tbl, 0.6);
+    
+    console.log(data.getColumnIndex('airport'));
 
     data.addColumn({ type: 'string', role: 'style' });
     
