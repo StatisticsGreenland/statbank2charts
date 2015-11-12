@@ -55,8 +55,8 @@ function toggle_visibility(id) {
        else
           e.style.display = 'block';
     }
-    
-    
+
+
  // Function to change the chart type based on user input from the HTML
 function changeChartType(kind) {
     chartType = kind;
@@ -74,9 +74,9 @@ function changeChartType(kind) {
         drawPieDashboard();
     }
     document.getElementById('state').value = kind;
-}   
-    
-    
+}
+
+
  function graphIt(datasetUrl, chartType) {
     JSONstat(datasetUrl, function () {
         if (this.length) {
@@ -92,4 +92,24 @@ function changeChartType(kind) {
             alert("Something went wrong, when loading the data. Is it a valid URL? Is it JSON-stat?");
         }
     })
+}
+
+// Get the columnIndex of the classificationvariable
+function getVarLabels(dataset, dataTable) {
+  var largestValue, largestVarLabel = 0;
+  var multiVar = [];
+
+  // Get all non-time variables
+  for (var i = 0; i < curDataset.length; i++) {
+    if (curDataset.Dimension(i).role != 'time') {
+      //console.log(curDataset.Dimension(i).role, curDataset.Dimension(i).length);
+      multiVar.push(curDataset.Dimension(i));
+    }
+  }
+  //console.log("multiVar: ", multiVar);
+  multiVar = multiVar.sort(function(a, b) {
+    return b.length - a.length;
+  });
+  //console.log("multivarLabel: ", multiVar);
+  return {multi: multiVar[0].label, single: multiVar[1].label}
 }

@@ -17,7 +17,7 @@ google.load('visualization', '1.0', { 'packages': ['corechart', 'controls', 'tab
 
 var curDataset, pivotedData, init, shownColumns, curChartColors = null;
 
-var chartColors = ['#dc3912', '#fb6705', '#41c190', '#32a9b2', '#f6bd0a', '#9f194f', '#05344a', '#00020f', '#fb5457', '#fba105', '#95b437', '#15b0bb','#056466', '#3c986a', '#b32a09', '#f57649', '#e16488', '#138ab6', '#0dbb94', '#2f5f70   ', '#9873a6', '#cab98f  ', '#c0617c', '#1d8870','#90bb0d', '#f24c54', '#528ab2'];
+var chartColors = ['#dc3912', '#fb6705', '#41c190', '#32a9b2', '#f6bd0a', '#9f194f', '#05344a', '#00020f', '#fb5457', '#fba105', '#95b437', '#15b0bb','#056466', '#3c986a', '#b32a09', '#f57649', '#e16488', '#138ab6', '#0dbb94', '#2f5f70', '#9873a6', '#cab98f', '#c0617c', '#1d8870','#90bb0d', '#f24c54', '#528ab2'];
 
 var toggleColumn = function (value) {
 /*    console.log('toggling column: ', value);*/
@@ -28,12 +28,12 @@ var toggleColumn = function (value) {
     drawDashboard();
 }
 
-// Set a callback to run when the Google Visualization API is loaded. 
+// Set a callback to run when the Google Visualization API is loaded.
 google.setOnLoadCallback(
     function () {
         JSONstat('http://bank.stat.gl/sq/2ea754be-6cc4-4ead-b349-b532d6e363ac', function () {
 /*            console.log("length: ", this.legth);*/
-            if (this.length) {                
+            if (this.length) {
                 curDataset = this.Dataset(0);
 /*                console.log('curdataset: ', curDataset);*/
                 drawDashboard();
@@ -45,14 +45,14 @@ google.setOnLoadCallback(
         })
     });
 
-// Which chart type should be drawn by default? 
+// Which chart type should be drawn by default?
 var chartType = 'ColumnChart';
 
 // Array defining with columns (airports) to display on the chart
 var allColumns = [];
 
 
-// changeButtonState sets the buttons class to indicate if a button is pressed or not. 
+// changeButtonState sets the buttons class to indicate if a button is pressed or not.
 var changeButtonState = function (id) {
     var element = document.getElementById(id);
     if (element.className == 'series-button series-button-inactive') {
@@ -76,7 +76,7 @@ var changeDatasetUrl = function (inputId, datasetUrl, newChartType) {
     else {
         datasetUrl = datasetUrl;
     }
-    
+
    /* console.log("InputId: ", inputId + " datasetUrl: ", datasetUrl + " newChartType: ", newChartType)*/
 
     graphIt(datasetUrl, chartType);
@@ -89,6 +89,7 @@ var getColumnLabels = function (dataset) {
 
     var buttonsDiv = document.createElement('div');
     buttonsDiv.setAttribute('id', 'category_buttons');
+    console.log("numCols ", dataset.getNumberOfColumns());
     for (var i = 2; i < dataset.getNumberOfColumns(); i++) {
         var button = document.createElement('button');
         button.setAttribute('style', 'background: ' + getSeries(i).color);
