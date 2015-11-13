@@ -111,5 +111,5 @@ function getVarLabels(dataset, dataTable) {
     return b.length - a.length;
   });
   //console.log("multivarLabel: ", multiVar);
-  return {multi: multiVar[0].label, single: multiVar[1].label}
+  return {multi: multiVar[0].label}
 }

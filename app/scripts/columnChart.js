@@ -10,8 +10,6 @@ function drawDashboard() {
   document.getElementById('source').innerHTML = dataset.Dataset(0).source;
 
   // The JSONStat-dataset is formatted into a dataTable which plays nice with googles chart library.
-  // The JSONStat-dataset is formatted into a dataTable which plays nice with googles chart library.
-  // The JSONStat-dataset is formatted into a dataTable which plays nice with googles chart library.
   var tbl = dataset.toTable({
     type: "object"
   });
@@ -20,15 +18,10 @@ function drawDashboard() {
   // The newly created datatable is used as input to a google visualization dataTable. 0.6 indicates the api-version.
   var data = new google.visualization.DataTable(tbl, 0.6);
 
-
-
   var timeColumnIndex = data.getColumnIndex(dataset.role.time[0]);
   var multiColumnIndex = data.getColumnIndex(dataset.role.classification[0]);
-  //console.log("multiColumnIndex: ", dataset.role.classification);
-
-
-
-  console.log('classificationvariable: ', getVarLabels(dataset, data));
+  var lastColumnIndex = dataset.length;
+  // console.log('classificationvariable: ', getVarLabels(dataset, data));
 
   data.addColumn({
     type: 'string',
@@ -43,27 +36,28 @@ function drawDashboard() {
 
   var classificationIndex = data.getColumnIndex(getVarLabels(dataset, data).multi);
 
-  var singleIndex = data.getColumnIndex(getVarLabels(dataset, data).single);
-
-
   // build column arrays for the view and grouping
   for (var i = 0; i < distinctValues.length; i++) {
     viewColumns.push({
       type: 'number',
       label: distinctValues[i],
       calc: (function(x) {
+        // console.log("calc X: ", x);
         return function(dt, row) {
+          // console.log("year: ", dt.getValue(row, 0), "| airport: ", dt.getValue(row, 1), " | month: ", dt.getValue(row,2), " | value: ", dt.getValue(row,3));
           // return values of C only for the rows where B = distinctValues[i] (passed into the closure via x)
-          return (dt.getValue(row, classificationIndex) == x) ? dt.getValue(row, 3) : null;
+          return (dt.getValue(row, classificationIndex) == x) ? dt.getValue(row, lastColumnIndex) : null;
         }
       })(distinctValues[i])
     });
+
     groupColumns.push({
-      column: i + 1,
+      column: i + 1, // start at column 1, as column 0 is reserved for the time variable
       type: 'number',
       label: distinctValues[i],
       aggregation: google.visualization.data.sum
     });
+
   }
 
   // Create a google visualization DataView to hold the data.
@@ -71,11 +65,17 @@ function drawDashboard() {
   var view = new google.visualization.DataView(data);
   view.setColumns(viewColumns);
 
-  console.log('datatable: ', data);
+  // console.log("view: ", view);
+  //
+  // console.log('datatable: ', data);
+  //
+  // console.log("view: ", view);
 
 
   // next, we group the view on column A, which gets us the pivoted data
   pivotedData = google.visualization.data.group(view, [0], groupColumns);
+
+  // console.log("pivoted: ", pivotedData);
 
   pivotedData.insertColumn(0, 'number', 'Year');
 

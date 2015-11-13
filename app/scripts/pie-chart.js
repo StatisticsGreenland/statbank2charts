@@ -22,8 +22,6 @@ function drawPieDashboard() {
     var classificationIndex = data.getColumnIndex(getVarLabels(dataset, data).multi);
     var singleIndex = data.getColumnIndex(getVarLabels(dataset, data).single);
 
-    console.log("singleindex: ", singleIndex);
-
     // Create a dashboard to hold the dataset controls
     var dashboard = new google.visualization.Dashboard(
         document.getElementById('dashboard_div'));
@@ -47,7 +45,7 @@ function drawPieDashboard() {
         // }
     });
 
-    var monthPicker = new google.visualization.ControlWrapper({
+  /*  var monthPicker = new google.visualization.ControlWrapper({
         'controlType': 'CategoryFilter',
         'containerId': 'month_picker',
         'options': {
@@ -64,7 +62,7 @@ function drawPieDashboard() {
         // 'state': {
         //     'selectedValues': ['Total']
         // }
-    });
+    });*/
 
     var airportPicker = new google.visualization.ControlWrapper({
         'controlType': 'CategoryFilter',
@@ -92,13 +90,13 @@ function drawPieDashboard() {
             'legend': 'right',
             'colors': chartColors
         },
-        'view': { 'columns': [1,3] }
+        'view': { 'columns': [classificationIndex, dataset.length] }
     });
 
     // Establish dependencies, declaring that timePicker, monthPicker and airportPicker drives 'pieChart',
     // so that the pie chart will only display entries that are let through these filters.
     dashboard.bind(timePicker, pieChart);
-    dashboard.bind(monthPicker, pieChart);
+    // dashboard.bind(monthPicker, pieChart);
     dashboard.bind(airportPicker, pieChart);
 
     // Draw the dashboard.
