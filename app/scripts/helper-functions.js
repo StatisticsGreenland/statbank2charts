@@ -98,6 +98,7 @@ function changeChartType(kind) {
 function getVarLabels(dataset, dataTable) {
   var largestValue, largestVarLabel = 0;
   var multiVar = [];
+  var timeLabel = null;
 
   // Get all non-time variables
   for (var i = 0; i < curDataset.length; i++) {
@@ -105,11 +106,14 @@ function getVarLabels(dataset, dataTable) {
       //console.log(curDataset.Dimension(i).role, curDataset.Dimension(i).length);
       multiVar.push(curDataset.Dimension(i));
     }
+    else {
+      timeLabel = curDataset.Dimension(i).label;
+    }
   }
   //console.log("multiVar: ", multiVar);
   multiVar = multiVar.sort(function(a, b) {
     return b.length - a.length;
   });
-  //console.log("multivarLabel: ", multiVar);
-  return {multi: multiVar[0].label}
+  console.log({time: timeLabel, multi: multiVar[0].label});
+  return {time: timeLabel, multi: multiVar[0].label}
 }

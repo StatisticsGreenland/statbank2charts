@@ -9,6 +9,9 @@ function drawDashboard() {
   document.getElementById('label').innerHTML = dataset.Dataset(0).label;
   document.getElementById('source').innerHTML = dataset.Dataset(0).source;
 
+  var columnLabels = getVarLabels(dataset, data);
+  console.log("ColLabels: ", columnLabels);
+
   // The JSONStat-dataset is formatted into a dataTable which plays nice with googles chart library.
   var tbl = dataset.toTable({
     type: "object"
@@ -77,7 +80,7 @@ function drawDashboard() {
 
   // console.log("pivoted: ", pivotedData);
 
-  pivotedData.insertColumn(0, 'number', 'Year');
+  pivotedData.insertColumn(0, 'number', columnLabels.time);
 
   // copy values from column 1 (old column 0) to column 0, converted to numbers
   for (var i = 0; i < pivotedData.getNumberOfRows(); i++) {
@@ -114,7 +117,7 @@ function drawDashboard() {
     'controlType': 'NumberRangeFilter',
     'containerId': 'time_picker',
     'options': {
-      'filterColumnLabel': 'Year',
+      'filterColumnLabel': columnLabels.time,
       'ui': {
         'labelStacking': 'vertical',
         'labelSeparator': ':',
@@ -147,6 +150,9 @@ function drawDashboard() {
   ////console.log("draw chart type: ", chartType);
   // Draw the dashboard.
   dashboard.draw(chartData);
+
+  document.getElementById('classification').innerHTML = getVarLabels(dataset, data).multi;
+
 
   // Make sure the chart is redrawn, whenever the window is resized.
   window.addEventListener('resize', function() {
