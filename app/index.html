@@ -102,13 +102,10 @@
         <p>The dataset should be of the <a class="white-text" href="http://json-stat.org/" target="blank">JSON-stat </a>format
           and have 3 dimensions:</p>
         <ol>
-          <li><b>Time.</b> This should be the first dimension. This dimension will become the horizontal axis on the bar and
-            line charts.
+          <li><b>Time.</b>This variable is found by looking for the role "time" in the dataset, and will become the horizontal axis on the bar and line charts. Only one variable with role "time" is allowed.
           </li>
-          <li><b>Category.</b> The second dimension is used to group the data in different data series. This dimension will be
-            the vertical axis of the charts.</li>
-          <li><b>Category (summed).</b> The third dimension may include categorical data, which will allow a third filtering
-            option in the pie chart. In the column and line chart the data is summed to one value.</li>
+          <li><b>Multi-classification variable.</b> This variable is used to group the data in different data series. This dimension will be the vertical axis of the charts. </li>
+          <li><b>Other variables.</b> The dataset may include additional more 1-dimensional variables.</li>
         </ol>
       </div>
     </div>
