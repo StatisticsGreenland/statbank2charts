@@ -65,12 +65,14 @@ function changeChartType(kind) {
         document.getElementById('airport_picker').style.display = 'none';
         document.getElementById('category_buttons').style.display = 'block';
         document.getElementById('month_picker').style.display = 'none';
+        document.getElementById('classification').style.display = 'block';
         drawDashboard();
     }
     else {
         document.getElementById('category_buttons').style.display = 'none';
         document.getElementById('month_picker').style.display = 'block';
         document.getElementById('airport_picker').style.display = 'block';
+        document.getElementById('classification').style.display = 'none';
         drawPieDashboard();
     }
     document.getElementById('state').value = kind;
