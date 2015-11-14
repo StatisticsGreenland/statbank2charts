@@ -40,29 +40,7 @@ function drawPieDashboard() {
                 'allowNone': false
             },
         },
-        // 'state': {
-        //     'selectedValues': ['2014']
-        // }
     });
-
-  /*  var monthPicker = new google.visualization.ControlWrapper({
-        'controlType': 'CategoryFilter',
-        'containerId': 'month_picker',
-        'options': {
-            'filterColumnIndex': singleIndex,
-            'ui': {
-                'labelStacking': 'vertical',
-                'allowTyping': true,
-                'allowMultiple': false,
-                'sortValues': false,
-                'cssClass': 'styled-category-filter',
-                'allowNone': false
-            },
-        },
-        // 'state': {
-        //     'selectedValues': ['Total']
-        // }
-    });*/
 
     var airportPicker = new google.visualization.ControlWrapper({
         'controlType': 'CategoryFilter',

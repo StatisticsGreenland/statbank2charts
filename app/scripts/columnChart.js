@@ -65,6 +65,8 @@ function drawDashboard() {
   pivotedData = google.visualization.data.group(view, [0], groupColumns);
   pivotedData.insertColumn(0, 'number', columnLabels.time);
 
+  var selectedTimeValues = []; // selectedValues will be used to select and store all values when it is not possible to use time-range-slider.
+
   // copy values from column 1 (old column 0) to column 0, converted to numbers
   for (var i = 0; i < pivotedData.getNumberOfRows(); i++) {
     var noRangeSlider = 0;
@@ -74,8 +76,13 @@ function drawDashboard() {
       pivotedData.setValue(i, 0, new Number(val).valueOf());
     } else {
       noRangeSlider++;
+      if (selectedTimeValues.length < 10) { // do not show more than 15 values on the time-axis per default
+        selectedTimeValues.push(val); // push all time-values to the array of selected values to avoid only one time point on e.g. line-charts.
+      }
     }
   }
+
+  console.log("timeValues: ", selectedTimeValues);
 
 
   // Calculate how many data-series the pivoted data has.
@@ -97,24 +104,26 @@ function drawDashboard() {
   var dashboard = new google.visualization.Dashboard(
     document.getElementById('dashboard_div'));
 
+
+
   if (noRangeSlider) {
     var timePicker = new google.visualization.ControlWrapper({
-        'controlType': 'CategoryFilter',
-        'containerId': 'time_picker',
-        'options': {
-            'filterColumnIndex': timeColumnIndex-1,
-            'ui': {
-                'labelStacking': 'vertical',
-                'allowTyping': true,
-                'allowMultiple': true,
-                'sortValues': false,
-                'cssClass': 'styled-category-filter',
-                'allowNone': false
-            },
-        },
-        // 'state': {
-        //     'selectedValues': ['2014']
-        // }
+      'controlType': 'CategoryFilter',
+      'containerId': 'time_picker',
+      'options': {
+        'filterColumnIndex': timeColumnIndex - 1,
+        'ui': {
+          'labelStacking': 'vertical',
+          'allowTyping': true,
+          'allowMultiple': true,
+          'sortValues': false,
+          'cssClass': 'styled-category-filter',
+          'allowNone': false
+        }
+      },
+      'state': {
+        'selectedValues': selectedTimeValues
+      }
     });
   } else {
     var timePicker = new google.visualization.ControlWrapper({
@@ -128,6 +137,9 @@ function drawDashboard() {
           'format': {
             'pattern': '####'
           }
+        },
+        'state': {
+          'selectedValues': selectedTimeValues
         }
       }
     });
