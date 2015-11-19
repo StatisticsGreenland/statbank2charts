@@ -63,8 +63,6 @@ var changeButtonState = function (id) {
     }
 }
 
-
-
 // Load a dataset by inserting an URL and clicking update in the HTML
 var changeDatasetUrl = function (inputId, datasetUrl, newChartType) {
     if (newChartType) {
@@ -76,8 +74,6 @@ var changeDatasetUrl = function (inputId, datasetUrl, newChartType) {
     else {
         datasetUrl = datasetUrl;
     }
-
-   /* console.log("InputId: ", inputId + " datasetUrl: ", datasetUrl + " newChartType: ", newChartType)*/
 
     graphIt(datasetUrl, chartType);
 }

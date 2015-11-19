@@ -18,8 +18,19 @@ function drawDashboard() {
   // The newly created datatable is used as input to a google visualization dataTable. 0.6 indicates the api-version.
   var data = new google.visualization.DataTable(tbl, 0.6);
 
-  var timeColumnIndex = data.getColumnIndex(dataset.role.time[0]);
-  var multiColumnIndex = data.getColumnIndex(dataset.role.classification[0]);
+  if (dataset.role.time) {
+    var timeColumnIndex = data.getColumnIndex(dataset.role.time[0]);
+  }
+  else {
+    alert("Could not find the time variable. Is it defined in the datasets role?");
+  }
+  if (dataset.role.classification[0]) {
+      var multiColumnIndex = data.getColumnIndex(dataset.role.classification[0]);
+  }
+  else {
+    console.log("the dataset does not contain enough columns.");
+  }
+
   var lastColumnIndex = dataset.length;
   // console.log('classificationvariable: ', getVarLabels(dataset, data));
 
@@ -111,7 +122,7 @@ function drawDashboard() {
       'controlType': 'CategoryFilter',
       'containerId': 'time_picker',
       'options': {
-        'filterColumnIndex': timeColumnIndex - 1,
+        'filterColumnIndex': timeColumnIndex+1, // move up one column to account for the extra column inserted, used when range-sliders are available (when the time-unit can be casted to int)
         'ui': {
           'labelStacking': 'vertical',
           'allowTyping': true,

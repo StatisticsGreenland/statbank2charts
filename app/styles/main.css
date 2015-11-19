@@ -1,4 +1,4 @@
-html { 
+html {
   background: url(../images/background.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -6,7 +6,7 @@ html {
   background-size: cover;
 }
 
-body { 
+body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333; 
 }
@@ -148,7 +148,7 @@ strong {
 }
 
 #dashboard_div a {
-  color: #fff !important;  
+  color: #fff !important;
 }
 
 .choose-category-band span {
@@ -179,7 +179,7 @@ strong {
 }
 
 #label {
-  color: grey; 
+  color: grey;
   font-weight: 300;
 }
 
@@ -199,7 +199,7 @@ strong {
 
 .google-visualization-controls-slider-thumb {
   background: url("../images/slider-thumb.gif");
-  top: 0 !important; 
+  top: 0 !important;
   border-radius: 0 !important;
   border: none !important;
   height: 33px !important;
@@ -236,7 +236,7 @@ strong {
     -ms-appearance: none;
     background-position-x: 234px;
     cursor: pointer;
-    float: right; 
+    float: right;
     margin-left: 2em;
 }
 
@@ -266,15 +266,15 @@ strong {
     -webkit-appearance: none;
     background-position-x: 234px;
     cursor: pointer;
-    box-shadow: none !important;  
+    box-shadow: none !important;
     -webkit-box-shadow: none !important;
 	-moz-box-shadow: none !important;
 }
 
 .google-visualization-controls-categoryfilter-selected li {
-  padding: .5em !important;  
+  padding: .5em !important;
   color: #fff !important;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .google-visualization-controls-categoryfilter-selected li  .charts-link-button {
@@ -323,10 +323,10 @@ form label {
   width: 20%;
   margin: 0 auto;
   margin-top: -.5em;
-  width: 0; 
-	height: 0; 
+  width: 0;
+	height: 0;
 	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;	
+	border-right: 20px solid transparent;
 	border-top: 17px solid #fff;
 }
 
@@ -347,7 +347,7 @@ form label {
 
 .download-band .download-button {
   width: 100%;
-} 
+}
 
 .btn:hover {
   opacity: .85;
@@ -408,7 +408,7 @@ form label {
 }
 
 .download-top {
-  float: right; 
+  float: right;
   margin-top: 8%
 }
 
@@ -422,7 +422,7 @@ form label {
 
 #dataset-rules {
   display: none;
-  padding-top: 2em; 
+  padding-top: 2em;
   padding-bottom: 2em;
 }
 
@@ -436,10 +436,10 @@ form label {
 }
 
 .close-button {
-float: right; 
+float: right;
 margin-top: -1em;
 
-} 
+}
 
 .light-blue-band {
   background: #3dc9d3;
@@ -464,18 +464,18 @@ margin-top: -1em;
 
 .demo-datasets {
 padding-bottom: 4em;
-padding-top: 2em;  
+padding-top: 2em;
 }
 
 @media all and (max-width: 568px) {
   .padded {
-    padding-left: 1em; 
-    padding-right: 1em; 
+    padding-left: 1em;
+    padding-right: 1em;
   }
     .hide-sm {
         display: none !important;
     }
-    
+
     #state {
       float: left !important;
       margin-left: 0;
