@@ -20,24 +20,18 @@ This repository contains a commented code-example of using data from StatBank Gr
 
 ## Dataset requirements ##
 * The data needs to be of the format JSONstat. Data-feeds are can be created at [http://bank.stat.gl/](http://bank.stat.gl/pxweb/en/Greenland/)
-* To use the visualisations "as is" the data should have 3 dimensions: 
 
-1. time (e.g. year, numeric) 
+* To use the visualisations "as is" the data should have at least 2 dimensions:
+ 
+time (e.g. year, numeric)  
+and one dimension with multiple categories (2-6 values looks nice)  
+from other dimensions in a datacube 0 or 1 value can be selected  
+  
+Sortorder is calculated from the role ‘time’ found in the JSON-STAT file  
 
-2. category (e.g. airport) 
+Note
 
-3. category (e.g. month)
-
-* **The first column in the table must always be time.** When editing the table on bank.stat.gl, it is possible to pivot the dataset manually to place *dimension 1* (time) as rows and the remaining dimensions as columns. 
-
-### Pie chart ###
-* In the pie chart *dimension 2 and 3* are used to filter the data. 
-
-### Line and bar chart ###
-In the line and bar chart the dataset is pivoted, with each unique value in dimension 2 used as a column in the table.
-* *dimension 1* is aggregated into one row for each unique time stamp (e.g. rows: 2001, 2002, 2003, ..) 
-* *dimension 2* is used to form the categories. 
-* *dimension 3* is lost during pivoting, in the sense that all data belonging to that specific time stamp and category (*from dimension 2*) is summed up to a single value. See illustrations (table 1 and table 1 pivoted) for reference.
+Not all files in the Greenlandic Statbank can be used. If this is to be used with other PX-Web based Statbanks CORS must be enabled on the server as well as ‘saved queries’, JSON-STAT and TIMEVAL must be declared
 
 **Table 1**
 ![Screen Shot 2015-09-28 at 10.31.10.png](/3556998481-Screen%20Shot%202015-09-28%20at%2010.31.10.png)
