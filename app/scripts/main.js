@@ -20,11 +20,9 @@ var curDataset, pivotedData, init, shownColumns, curChartColors = null;
 var chartColors = ['#dc3912', '#fb6705', '#41c190', '#32a9b2', '#f6bd0a', '#9f194f', '#05344a', '#00020f', '#fb5457', '#fba105', '#95b437', '#15b0bb','#056466', '#3c986a', '#b32a09', '#f57649', '#e16488', '#138ab6', '#0dbb94', '#2f5f70', '#9873a6', '#cab98f', '#c0617c', '#1d8870','#90bb0d', '#f24c54', '#528ab2'];
 
 var toggleColumn = function (value) {
-/*    console.log('toggling column: ', value);*/
     var options = toggleSeries(value);
     shownColumns = options.columns;
     curChartColors = options.colors;
-/*    console.log(shownColumns, curChartColors);*/
     drawDashboard();
 }
 
@@ -74,7 +72,6 @@ var changeDatasetUrl = function (inputId, datasetUrl, newChartType) {
     else {
         datasetUrl = datasetUrl;
     }
-
     graphIt(datasetUrl, chartType);
 }
 

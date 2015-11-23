@@ -8,6 +8,9 @@ function drawPieDashboard() {
     // Pick the first dataset in the JONStat ojbect (some JSON-stat objects may contain more than one)
     var dataset = curDataset;
 
+    document.getElementById('label').innerHTML = dataset.Dataset(0).label;
+    document.getElementById('source').innerHTML = dataset.Dataset(0).source;
+
     // The JSONStat-dataset is formatted into a dataTable, which plays nice with googles chart library.
     var tbl = dataset.toTable({ type: "object" });
 
@@ -15,7 +18,7 @@ function drawPieDashboard() {
     var data = new google.visualization.DataTable(tbl, 0.6);
 
     var chartView = new google.visualization.DataView(data);
-    chartView.hideRows([0]);
+    //chartView.hideRows([0]);
     var chartData = chartView.toDataTable();
 
     var timeColumnIndex = data.getColumnIndex(dataset.role.time[0]);
