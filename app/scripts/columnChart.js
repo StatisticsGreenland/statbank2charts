@@ -74,7 +74,7 @@ function drawDashboard() {
 
   // next, we group the view on column A, which gets us the pivoted data
   pivotedData = google.visualization.data.group(view, [0], groupColumns);
-  pivotedData.insertColumn(0, 'number', columnLabels.time);
+  pivotedData.insertColumn(0, 'number', 'timeAsNumber');
 
   var selectedTimeValues = []; // selectedValues will be used to select and store all values when it is not possible to use time-range-slider.
 
@@ -122,7 +122,7 @@ function drawDashboard() {
       'controlType': 'CategoryFilter',
       'containerId': 'time_picker',
       'options': {
-        'filterColumnIndex': timeColumnIndex+1, // move up one column to account for the extra column inserted, used when range-sliders are available (when the time-unit can be casted to int)
+      'filterColumnLabel': columnLabels.time, // move up one column to account for the extra column inserted, used when range-sliders are available (when the time-unit can be casted to int)
         'ui': {
           'labelStacking': 'vertical',
           'allowTyping': true,
@@ -141,10 +141,11 @@ function drawDashboard() {
       'controlType': 'NumberRangeFilter',
       'containerId': 'time_picker',
       'options': {
-        'filterColumnLabel': columnLabels.time,
+        'filterColumnLabel': 'timeAsNumber',
         'ui': {
           'labelStacking': 'vertical',
           'labelSeparator': ':',
+          'label': columnLabels.time,
           'format': {
             'pattern': '####'
           }
